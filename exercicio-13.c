@@ -11,7 +11,7 @@ void main()
     do{
         tentativas++;
         srand(time(NULL));
-        palpite = valorMin + rand() % (valorMax - valorMin) ;
+        palpite = valorMin + rand() % (valorMax - valorMin);
         printf("Palpite: %d\n", palpite);
         if(palpite == numeroMentalizado)
             break;
