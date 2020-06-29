@@ -4,6 +4,7 @@
 
 #define MAX 30
 
+//Comentario teste
 void main() {
 
     char name[MAX];
