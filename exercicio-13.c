@@ -25,5 +25,5 @@ void main()
             //printf("valor maximo = %d\n", valorMax);
         
     } while (1);
-    printf("Numero total de tentativs: %d", tentativas);
+    printf("Numero total de tentativs: %d\n\n", tentativas);
 }
