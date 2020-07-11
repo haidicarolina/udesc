@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+//--------------------------------------------------------------
+// EXERCICIO 5 - AULA 29/06/2020
+// https://github.com/allanrodrigol/linguagem-programacao/blob/master/03%20-%20Vari%C3%A1veis%20compostas.pdf
+//--------------------------------------------------------------
 int main()
 {
     int v[5] = {1,2,3,4,5};
