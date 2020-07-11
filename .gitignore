@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+.vscode/c_cpp_properties.json
+*.exe
+*.txt
+*.json
+=======
 #ignore all kind of files
 *
 #except c files
 !*.c
+>>>>>>> 256f06b22b0f7f352ec97e4e01307571600e68a3
