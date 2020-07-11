@@ -1,4 +1,7 @@
-/**Faça um programa que leia o nome de um produto, o preço e a quantidade comprada
+/*
+Exercicio - 1
+
+Faça um programa que leia o nome de um produto, o preço e a quantidade comprada
 e armazene estas informações em uma estrutura. Em seguida, o programa deve escrever
 o nome do produto, quantidade, preço unitário e o valor total a ser pago, considerando
 que são oferecidos diferentes descontos com base no número de unidades compradas.
