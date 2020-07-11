@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #define QTDENOTAS 4
 #define BIMESTRES  3
@@ -50,8 +51,10 @@ void main()
     printf("Media: %lf\n", soma);
     
 }
-*/
 
+//--------------------------------------------------------------
+// MATRIZ
+//--------------------------------------------------------------
 void main()
 {
     float notas[BIMESTRES][NOTAS], soma = 0, media = 0;
@@ -85,3 +88,5 @@ void main()
     }
     
 }
+
+*/
