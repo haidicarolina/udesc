@@ -30,18 +30,18 @@ void popular_array_em_branco();
 int retorna_posicao_no_array(int);
 int quantos_contatos();
 
-/**< CRIAR A ESTRUTURA CLIENTE */
+/**< CRIAR A ESTRUTURA Contato */
 
 typedef struct{
     int id;
     char nome[MAX];
     char email[MAX];
     char celular[MAX];
-}Cliente;
+}Contato;
 
-/**< CRIANDO VETOR CLIENTE */
+/**< CRIANDO VETOR Contato */
 
-Cliente contatos[MAX];
+Contato contatos[MAX];
 
 /**< GARANTINDO QUE O VETOR ESTEJA LIMPO PARA USO */
 
@@ -67,7 +67,7 @@ int quantos_contatos(){
     return c;
 }
 
-/**< FAZ AS VERIFICAÇÕES LOGICAS PARA CADASTRO E INCLUI CLIENTE NO ARRAY contatos */
+/**< FAZ AS VERIFICAÇÕES LOGICAS PARA CADASTRO E INCLUI Contato NO ARRAY contatos */
 
 void incluir(){
     int i, j, k, condicao_saida = 0;
@@ -145,10 +145,10 @@ void excluir(){
             printf("\tID fora do range.\n\n");
         }else{
             for(i=0;i<quantos_contatos();i++){
-                g = quantos_contatos() - i; /**< g = quantos contatos que preciso iterar para sobrescrever o cliente que quero "deletar"*/
+                g = quantos_contatos() - i; /**< g = quantos contatos que preciso iterar para sobrescrever o Contato que quero "deletar"*/
                 if(id == contatos[i].id){
                     while(s!=1){
-                        printf("\n\tConfirmar a exclusao do cliente:\n");
+                        printf("\n\tConfirmar a exclusao do Contato:\n");
                         printf("\tID: %d\n\tNome: %s\n", contatos[i].id, contatos[i].nome);
                         printf("\t(1) Confirmar.\n\t(2) Sair.\n\t");
                         sscanf(fgets(userInput, MAX-1, stdin),"%d", &n);
@@ -203,7 +203,7 @@ void alterar(){
         }else{
             for(i=0;i<MAX;i++){
                 if(id == contatos[i].id){
-                    printf("\n\tDados do cliente\n");
+                    printf("\n\tDados do Contato\n");
                     printf("\tID: %d\n", id);
                     printf("\tNome: %s\n", contatos[i].nome);
                     printf("\tEmail: %s\n", contatos[i].email);
@@ -282,9 +282,9 @@ void texto_do_menu(){
     printf("--------------------------------------------------------\n");
     printf("----------------CADASTRO DE contatos--------------------\n");
     printf("--------------------------------------------------------\n\n");
-    printf("\t(1) Incluir um novo cliente.\n");
-    printf("\t(2) Excluir um cliente existente.\n");
-    printf("\t(3) Alterar um cliente existente.\n");
+    printf("\t(1) Incluir um novo Contato.\n");
+    printf("\t(2) Excluir um Contato existente.\n");
+    printf("\t(3) Alterar um Contato existente.\n");
     printf("\t(4) Listar todos contatos.\n");
     printf("\t(5) Sair.\n\n");
     printf("\tUse os indicadores para escolher uma opcao: ");
