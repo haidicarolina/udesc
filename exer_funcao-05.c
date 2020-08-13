@@ -6,7 +6,7 @@ void inverter(char *palavra){
     if (*palavra)
     {
         inverter(palavra+1);
-        putchar(*palavra);   
+        putchar(*palavra);
     }
 }
 
