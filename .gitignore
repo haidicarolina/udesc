@@ -2,7 +2,3 @@
 *.exe
 *.txt
 *.json
-Pilha.c
-Pilha.h
-PilhaChar.c
-PilhaChar.h
