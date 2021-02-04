@@ -11,13 +11,13 @@ int precedencia( char info );
 int calcula_posfixa( char *expressao);
 
 int main(int argc, char *argv[]){
-	char entrada[MAX] = ""; //(5+9)*2+6*5
-	char saida[MAX]= "";
+    char entrada[MAX] = ""; //(5+9)*2+6*5
+    char saida[MAX]= "";
     int string_len;
     PilhaChar p2;
     inicializa_pilha_char(&p2, MAX);
-	printf("Digite uma formula: ");
-	scanf("%[^\n]%*c", entrada); // leitura de qualquer caractere, exceto '\n'.
+    printf("Digite uma formula: ");
+    scanf("%[^\n]%*c", entrada); // leitura de qualquer caractere, exceto '\n'.
     printf("%s\n", entrada);
     string_len = strlen(entrada);
 
