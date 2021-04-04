@@ -15,12 +15,12 @@ Mt N x M e gravá-la em outro arquivo.
 
 */
 
-
+//gcc exer_arquivos-01.c -o teste
 
 int main() {
     char buffer[BUFFER_SIZE];
-    char matriz[BUFFER_SIZE][BUFFER_SIZE];
-    FILE *arquivo = fopen("entrada.txt","r");
+    char matriz[4][4];
+    FILE *arquivo = fopen("entrada_dados.txt","r");
     while (fgets(buffer, sizeof buffer, arquivo) != NULL)
     {
         for (int i = 0; i < strlen(buffer); i++)
@@ -37,7 +37,7 @@ int main() {
         }
     }
 
-    printf("%ld\n", strlen(matriz[BUFFER_SIZE]));
+    printf("%ld\n", strlen(matriz[4]));
 
     if (feof(arquivo)){
         printf("\nChegou no fim do arquivo.\n");
