@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.LobbyController">
+  <children>
+    <AnchorPane VBox.vgrow="ALWAYS">
+         <children>
+            <Pane prefHeight="720.0" prefWidth="200.0">
+               <children>
+                  <TreeView fx:id="treeView" layoutY="137.0" onMouseClicked="#mouseClickTreeView" prefHeight="558.0" prefWidth="200.0" />
+                   <Button fx:id="btnNewMsg" layoutY="2.0" mnemonicParsing="false" onAction="#novaMensagem" prefHeight="67.0" prefWidth="200.0" text="Nova mensagem" />
+                   <Button fx:id="btnLogOut" layoutY="70.0" mnemonicParsing="false" onAction="#logout" prefHeight="67.0" prefWidth="200.0" text="Log Out" />
+               </children>
+            </Pane>
+            <Pane layoutX="200.0" prefHeight="720.0" prefWidth="305.0">
+               <children>
+                  <ListView fx:id="listView" onMouseClicked="#mouseClickListView" prefHeight="695.0" prefWidth="305.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="505.0" prefHeight="720.0" prefWidth="775.0" style="-fx-background-color: #d9dedb;">
+               <children>
+                   <Label fx:id="labelEmail" layoutX="50.0" layoutY="151.0" style="-fx-background-color: #bcc2be;" textFill="#000000">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
