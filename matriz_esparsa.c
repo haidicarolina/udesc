@@ -20,22 +20,18 @@ void inicializa_matriz_esparsa( MatrizEsparsa *multi, int linhas, int colunas ){
     multi->numColunas = colunas;
 }
 
-void mostra_matriz_esparsa( MatrizEsparsa m, void (*mostra)(void *)  ){
+void mostra_matriz_esparsa( MatrizEsparsa m){
     int i, j;
-    Elemento *p = m.multiLista.cabeca;
-    Elemento *k = m.multiLista.cabeca->info;
+    EntradaMatriz x;
+    Lista l;
 	
 	printf("Dados da matriz (%dx%d):\n", m.multiLista.qtd, m.numColunas);
-
-	for( i = 0 ; i < m.multiLista.qtd; i++ ){
-		for( j = 0; j < m.numColunas ; j++ ){
-            // printf("j < m->numColunas: %d < %d", j, m->numColunas);
-            // printf("%4d", 15);
-			mostra( k->info );
-            if (k != NULL) k = k->proximo;
-        }
-        p = p->proximo;
-		printf("\nteste1");
+	for( i = 0; i < m.multiLista.qtd ; i++){
+		le_valor( m.multiLista, &l, i );
+		for( j = 0 ; j < m.numColunas; j++ ){
+			le_valor( l, &x, j );
+			printf("%4d ", x.info);
+		}
+		printf("\n");
 	}
-	printf("\nteste2");
 }
