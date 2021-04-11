@@ -10,4 +10,3 @@ void mostra_matriz( MatrizDinamica m );
 void desaloca_matriz( MatrizDinamica *p );
 int modifica_matriz( MatrizDinamica *p, int lin, int col, int valor);
 int compara_matrizes( MatrizDinamica a, MatrizDinamica b );
-
