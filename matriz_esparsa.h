@@ -15,7 +15,7 @@ typedef struct MatrizEsparsa {
 
 void inicializa_matriz_esparsa( MatrizEsparsa *me, int l, int c );
 void mostra_matriz_esparsa( MatrizEsparsa m);
-int set_matriz_esparsa( MatrizEsparsa *p, int lin, int col, int valor);
-int get_matriz_esparsa( MatrizEsparsa *p, int lin, int col, int valor);
+int set_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int info);
+int get_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int info);
 int soma_matrizes_esparsa( MatrizEsparsa a, MatrizEsparsa b );
 void desaloca_matriz_esparsa( MatrizEsparsa *p );

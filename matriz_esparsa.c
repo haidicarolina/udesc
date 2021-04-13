@@ -1,23 +1,37 @@
 #include "matriz_esparsa.h"
 
+int compara_matriz_esparsa( void *x, void *y ){
+    EntradaMatriz *a = x, *b = y; // void* --> EntradaMatriz*
+    printf("a->coluna - b->coluna: %d", a->coluna - b->coluna);
+    return a->coluna - b->coluna;
+}
+
 void inicializa_matriz_esparsa( MatrizEsparsa *multi, int linhas, int colunas ){
-    Lista c1;
-    Lista l1 = multi->multiLista;
-    int i, j;
-    EntradaMatriz x;
-    inicializa_lista( &l1, sizeof(Lista));
+    int i;
+    inicializa_lista( &multi->multiLista, sizeof(Lista));
     for (i = 0; i < linhas; i++) {
+        Lista c1;
         inicializa_lista( &c1, sizeof(EntradaMatriz) );
-        for ( j = 0; j < colunas; j++){
-			printf("M[%d, %d]: ", i, j);
-			scanf("%d", &x.info);
-            x.coluna = j;
-			insere_fim( &c1, &x );
-        }
-		insere_fim( &l1, &c1 );
+		insere_fim( &multi->multiLista, &c1 );
     }
-    multi->multiLista = l1;
     multi->numColunas = colunas;
+}
+
+int set_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int info ){
+    EntradaMatriz entrada, aux;
+    entrada.info = info;
+    entrada.coluna = col;
+    int i, j;
+    Lista l;
+    i = le_valor( multi->multiLista, &l, lin );
+    j = le_valor( l, &aux, col );
+    printf("i: %d j: %d\n", i,j);
+    aux = entrada;
+    if (j > 0)
+        insere_ordem( &l, &aux, compara_matriz_esparsa );
+    else
+        insere_fim( &l, &aux );
+
 }
 
 void mostra_matriz_esparsa( MatrizEsparsa m){
@@ -29,8 +43,11 @@ void mostra_matriz_esparsa( MatrizEsparsa m){
 	for( i = 0; i < m.multiLista.qtd ; i++){
 		le_valor( m.multiLista, &l, i );
 		for( j = 0 ; j < m.numColunas; j++ ){
-			le_valor( l, &x, j );
-			printf("%4d ", x.info);
+			if(le_valor( l, &x, j ) == 1){
+			    printf("%4d ", x.info);
+            }else{
+			    printf("%4d ", 0);
+            }
 		}
 		printf("\n");
 	}
