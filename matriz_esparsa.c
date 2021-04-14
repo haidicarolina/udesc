@@ -6,49 +6,75 @@ int compara_matriz_esparsa( void *x, void *y ){
     return a->coluna - b->coluna;
 }
 
-void inicializa_matriz_esparsa( MatrizEsparsa *multi, int linhas, int colunas ){
+void mostra_EntradaMatriz( void *x ){     // mostra um float...
+    EntradaMatriz *p = x;
+    printf("(%d,%d)\n", p->coluna, p->info); // a partir de um void*
+}
+
+void inicializa_matriz_esparsa( MatrizEsparsa *ml, int linhas, int colunas ){
     int i;
-    inicializa_lista( &multi->multiLista, sizeof(Lista));
+    inicializa_lista( &ml->multiLista, sizeof(Lista));
     for (i = 0; i < linhas; i++) {
         Lista c1;
         inicializa_lista( &c1, sizeof(EntradaMatriz) );
-		insere_fim( &multi->multiLista, &c1 );
+		insere_fim( &ml->multiLista, &c1 );
     }
-    multi->numColunas = colunas;
+    ml->numColunas = colunas;
 }
 
-int set_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int info ){
-    EntradaMatriz entrada, aux;
-    entrada.info = info;
-    entrada.coluna = col;
-    int i, j;
-    Lista l;
-    i = le_valor( multi->multiLista, &l, lin );
-    j = le_valor( l, &aux, col );
-    printf("i: %d j: %d\n", i,j);
-    aux = entrada;
-    if (j > 0)
-        insere_ordem( &l, &aux, compara_matriz_esparsa );
-    else
-        insere_fim( &l, &aux );
+void set_matriz_esparsa( MatrizEsparsa *ml, int lin, int col, int data ){
+    Lista linha;
+    le_valor( ml->multiLista, &linha, lin );
 
+    EntradaMatriz entrada, aux;
+    entrada.info = data;
+    entrada.coluna = col;
+
+    int index = busca( linha, &entrada, compara_matriz_esparsa);
+    if (index != -1){
+        if(data == 0)
+            remove_pos(&linha, &entrada, index);
+        else
+            modifica_valor(linha, &entrada, index);
+    }
+    else{
+        if (data != 0)
+            insere_ordem(&linha, &entrada, compara_matriz_esparsa);
+    }
+    modifica_valor( ml->multiLista, &linha, lin);
 }
 
 void mostra_matriz_esparsa( MatrizEsparsa m){
-    int i, j;
-    EntradaMatriz x;
+    int i, j, k;
     Lista l;
-	
+    EntradaMatriz x;
 	printf("Dados da matriz (%dx%d):\n", m.multiLista.qtd, m.numColunas);
 	for( i = 0; i < m.multiLista.qtd ; i++){
-		le_valor( m.multiLista, &l, i );
-		for( j = 0 ; j < m.numColunas; j++ ){
-			if(le_valor( l, &x, j ) == 1){
-			    printf("%4d ", x.info);
-            }else{
-			    printf("%4d ", 0);
+        Lista linha;
+        le_valor(m.multiLista, &linha, i);
+        //mostra_lista(linha, mostra_EntradaMatriz);
+        int col_atual = 0;
+        for(j=0;j<linha.qtd;j++){
+            le_valor( linha, &x, j);
+            for( k = col_atual ; k < x.coluna ; k++){
+                printf("%3d", 0);
             }
-		}
-		printf("\n");
-	}
+            printf("%3d", x.info);
+            col_atual += x.coluna + 1;
+        }
+        for(k = col_atual; k < m.numColunas; k++)
+            printf("%3d", 0);
+        printf("\n");
+
+    }
+}
+
+void desaloca_matriz_esparsa( MatrizEsparsa *m) {
+    int i;
+    for(i=0;i< m->multiLista.qtd; i++){
+        Lista linha;
+        le_valor(m->multiLista, &linha, i);
+        desaloca_lista( &linha );
+    }
+    desaloca_lista( &m->multiLista );
 }

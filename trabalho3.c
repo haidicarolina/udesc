@@ -2,6 +2,7 @@
 Trabalho 3: Implementação de Matrizes Esparsas
 */
 #include "matriz_esparsa.h"
+#include <locale.h>
 
 void main(int argc, char *argv[]){
 	int i, j;
@@ -15,6 +16,11 @@ void main(int argc, char *argv[]){
 	scanf("%d", &col);
     inicializa_matriz_esparsa( &me, lin, col );
     mostra_matriz_esparsa( me );
-    set_matriz_esparsa( &me, 2, 2, 19);
+    printf("teste\n");
+    set_matriz_esparsa( &me, 2, 1, 19);
+    printf("teste\n");
     mostra_matriz_esparsa( me );
+
+
+    desaloca_matriz_esparsa( &me );
 }

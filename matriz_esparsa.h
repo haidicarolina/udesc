@@ -4,8 +4,7 @@
 #include "Lista.h"
 
 typedef struct EntradaMatriz {
-    int coluna;
-    int info;
+    int coluna, info;
 }EntradaMatriz;
 
 typedef struct MatrizEsparsa {
@@ -15,7 +14,7 @@ typedef struct MatrizEsparsa {
 
 void inicializa_matriz_esparsa( MatrizEsparsa *me, int l, int c );
 void mostra_matriz_esparsa( MatrizEsparsa m);
-int set_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int info);
+void set_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int data);
 int get_matriz_esparsa( MatrizEsparsa *multi, int lin, int col, int info);
 int soma_matrizes_esparsa( MatrizEsparsa a, MatrizEsparsa b );
 void desaloca_matriz_esparsa( MatrizEsparsa *p );

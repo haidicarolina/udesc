@@ -10,7 +10,7 @@ void inicializa_lista( Lista *p, int t ){
 }
 
 int lista_vazia ( Lista l ){
-   return l.cabeca == NULL;
+    return l.cabeca == NULL;
 }
 
 Elemento *aloca_elemento( void *info, int tam ){
@@ -26,15 +26,30 @@ Elemento *aloca_elemento( void *info, int tam ){
 	return p;
 }
 
+int busca( Lista l, void *chave , int (*compara)(void*, void*) ){
+	Elemento *aux = l.cabeca;
+	int cont = 0;
+	while( aux!= NULL){
+		if( compara( aux->info, chave) == 0 )
+			return cont;
+		
+		cont++;
+		aux = aux->proximo;
+	}
+	return -1;
+}
+
 int insere_inicio( Lista *p, void *info ){
-    printf("entrou em insere_inicio\n");
+    // printf("entrou em insere_inicio\n");
 	Elemento *novo = aloca_elemento( info, p->tamInfo );
 	if( novo == NULL )
 		return 0; // Erro, falta de mem�ria!
 
 	novo->proximo = p->cabeca;
+    
 	p->cabeca = novo;
 	p->qtd++;
+    // printf("passou por td insere_inicio\n");
 	return 1; // Sucesso!
 }
 
@@ -52,7 +67,7 @@ int remove_inicio( Lista *p, void *info ){
 }
 
 int insere_fim( Lista *p, void *info ){
-    printf("entrou em insere_fim\n");
+    // printf("entrou em insere_fim\n");
     if( lista_vazia( *p ) )
         return insere_inicio( p, info );
     Elemento *aux = p->cabeca;

@@ -25,6 +25,7 @@ int remove_pos( Lista *p, void *info , int pos );
 int le_valor( Lista l, void *info , int pos );
 int modifica_valor( Lista l, void *info , int pos );
 int insere_ordem( Lista *p, void *info , int (*compara)(void*, void*) );
+int busca( Lista p, void *chave , int (*compara)(void*, void*) );
 void mostra_lista( Lista l, void (*mostra)(void *) );
 int conta_elementos( Lista l );
 void desaloca_lista( Lista *p );
