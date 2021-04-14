@@ -2,7 +2,6 @@
 
 int compara_matriz_esparsa( void *x, void *y ){
     EntradaMatriz *a = x, *b = y; // void* --> EntradaMatriz*
-    printf("a->coluna - b->coluna: %d", a->coluna - b->coluna);
     return a->coluna - b->coluna;
 }
 
@@ -45,17 +44,36 @@ void set_matriz_esparsa( MatrizEsparsa *ml, int lin, int col, int data ){
 }
 
 void mostra_matriz_esparsa( MatrizEsparsa m){
-    int i, j, k;
+    int i, j, k, vazio;
     Lista l;
     EntradaMatriz x;
 	printf("Dados da matriz (%dx%d):\n", m.multiLista.qtd, m.numColunas);
 	for( i = 0; i < m.multiLista.qtd ; i++){
         Lista linha;
         le_valor(m.multiLista, &linha, i);
-        //mostra_lista(linha, mostra_EntradaMatriz);
         int col_atual = 0;
+        vazio = lista_vazia(linha);
+        /*
+        if(vazio){
+            for(k = 0; k < m.numColunas; k++)
+                printf("%3d", 0);
+            printf("\n");
+        }else{
+            for(j=0;j<linha.qtd;j++){
+                vazio = le_valor( linha, &x, j);
+                // printf("vazio: %d\n", vazio);
+                if(vazio){
+                    printf("%3d", 0);
+                }else{
+                    printf("%3d", x.info);
+                }
+                col_atual++;
+            }
+            printf("\n");
+        }
+        */
         for(j=0;j<linha.qtd;j++){
-            le_valor( linha, &x, j);
+            vazio = le_valor( linha, &x, j);
             for( k = col_atual ; k < x.coluna ; k++){
                 printf("%3d", 0);
             }
@@ -65,7 +83,6 @@ void mostra_matriz_esparsa( MatrizEsparsa m){
         for(k = col_atual; k < m.numColunas; k++)
             printf("%3d", 0);
         printf("\n");
-
     }
 }
 
@@ -77,4 +94,34 @@ void desaloca_matriz_esparsa( MatrizEsparsa *m) {
         desaloca_lista( &linha );
     }
     desaloca_lista( &m->multiLista );
+}
+
+int get_matriz_esparsa( MatrizEsparsa *m, int lin, int col){
+    Lista l;
+    le_valor( m->multiLista, &l,  lin);
+    EntradaMatriz x;
+    for(int i = 0; i <= col; i++){
+        le_valor( l, &x, i );
+        if(x.coluna == col) return x.info;
+    }
+    return 0;
+}
+
+MatrizEsparsa soma_matrizes_esparsa( MatrizEsparsa *a, MatrizEsparsa *b, int lin, int col ){
+    int i, j, soma, val1, val2;
+    Lista l1, l2;
+    EntradaMatriz x1, x2;
+    MatrizEsparsa m;
+    inicializa_matriz_esparsa(&m,lin,col);
+    for(i = 0; i < lin; i++){
+        for(j = 0; j < col; j++){
+            val2 = get_matriz_esparsa( b, i, j );
+            val1 = get_matriz_esparsa( a, i, j );
+            printf("i: %d j: %d val1: %d val2: %d\n", i,j,val1,val2);
+            soma = val1 + val2;
+            if(soma)
+                set_matriz_esparsa(&m,i,j,soma);
+        }
+    }
+    return m;
 }

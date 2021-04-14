@@ -179,7 +179,6 @@ int insere_ordem( Lista *p, void *info , int (*compara)(void*, void*) ){
     int cont = 0;
 
     while(aux != NULL && compara(info, aux->info) > 0){
-        printf("dentro do while\n");
         aux = aux->proximo;
         cont++;
     }
